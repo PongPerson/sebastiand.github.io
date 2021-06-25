@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<title> Pong </title>
+		<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+		<script>
+			function start(){
+				sjs.open("target",900,850);
+				alert("Use WASD or arrow keys to move. At 150 point you win good luck!")
+				var ball = new sjs.Image("Images/planet.png");
+				ball.type = "ball";
+				ball.setSize(150, 150);
+				ball.center();
+				ball.friction = 0;
+				ball.bounce();
+				ball.pushRight(3);
+				ball.pushUp(6);
+				
+				var paddle1 = new sjs.Image("Images/green.png");
+				paddle1.type = "paddle";
+				paddle1.setSize(150, 20);
+				paddle1.centerH();//paddle 1 
+
+				var paddle2 = new sjs.Image("Images/blue.png")
+				paddle2.type = "paddle";
+				paddle2.setSize(150, 20);
+				paddle2.moveTo(400, 900);
+
+				var paddle3 = new sjs.Image("Images/red.png")
+				paddle3.type = "paddle";
+				paddle3.centerH();
+				paddle3.moveTo(0,400);
+				paddle3.setSize(20,150);
+
+				var paddle4 = new sjs.Image("Images/pink.png")
+				paddle4.type = "paddle";
+				paddle4.centerH();
+				paddle4.moveTo(900, 400);
+				paddle4.setSize(20,150);
+
+				sjs.keyDown(LEFT_KEY, function(){
+				paddle1.pushRight();
+				paddle2.pushLeft();
+
+});
+				sjs.keyDown(RIGHT_KEY, function(){
+				paddle1.pushLeft();
+				paddle2.pushRight();
+				});
+
+				sjs.keyDown(UP_KEY, function(){
+				paddle3.pushUp();
+				paddle4.pushDown();
+				});
+
+				sjs.keyDown(DOWN_KEY, function(){
+				paddle4.pushUp();
+				paddle3.pushDown();
+				});
+
+						sjs.keyDown(A_KEY, function(){
+				paddle1.pushRight();
+				paddle2.pushLeft();
+
+});
+				sjs.keyDown(D_KEY, function(){
+				paddle1.pushLeft();
+				paddle2.pushRight();
+				});
+
+				sjs.keyDown(W_KEY, function(){
+				paddle3.pushUp();
+				paddle4.pushDown();
+				});
+
+				sjs.keyDown(S_KEY, function(){
+				paddle4.pushUp();
+				paddle3.pushDown();
+				});
+					
+
+				
+				
+					var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "orange");
+
+sjs.onHit("ball","paddle", function(ball,paddle){
+score = score + 1;
+score_txt.setText("Score: "+score);
+sjs.bounceOff(ball,paddle);
+});
+
+					sjs.onHit("ball",["top_screen","bottom_screen","left_screen","right_screen"], function(){
+window.location = "gameover.html";
+});					
+		
+				}
+
+				
+			</script>
+		</head>
+		<body onload="start()">
+			<h1> Pong Game </h1>
+			<div id="target" style="margin:auto;background:black
+		;"></div>
+ 	</body>
+</html>

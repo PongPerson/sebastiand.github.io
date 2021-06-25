@@ -1,0 +1,28 @@
+<html>
+ <head>
+  <title> Pong Menu </title> 
+  <script src="https://simplycodingcourses.com/files/simplyjs/simply.js"> </script>  
+  <script>  
+   function start(){
+   	sjs.open("target",900,850);
+    var menu = new sjs.Text("Main Menu!", 20, "white");
+	 var startBtn = new sjs.Button("Play Pong! Tournament style", function(){
+window.location = "pong.html";
+});
+    var ball = new sjs.Image("Images/planet.png");
+				ball.type = "ball";
+				ball.setSize(150, 150);
+				ball.center();
+				ball.friction = 0;
+				ball.bounce();
+				ball.pushRight(3);
+				ball.pushUp(6)
+;
+
+   }
+  </script>  
+ </head>  
+ <body onload="start()">
+   <div id="target" style="margin:auto;background:black;"></div>
+ </body>
+</html>
